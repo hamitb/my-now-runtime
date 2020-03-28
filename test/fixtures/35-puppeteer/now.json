@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "**/*.js",
+      "use": "@now/node",
+      "config": {
+        "functions": {
+          "**/*.js": {
+            "memory": 3008
+          }
+        }
+      }
+    }
+  ]
+}
