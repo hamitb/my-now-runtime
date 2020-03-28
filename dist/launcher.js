@@ -4,6 +4,7 @@ function makeNowLauncher({ entrypointPath, bridgePath, helpersPath, sourcemapSup
     return `const { Bridge } = require("${bridgePath}");
 const { Server } = require("http");
 ${shouldAddSourcemapSupport ? `require("${sourcemapSupportPath}");\n` : ''}
+const thundra = require('@thundra/core')();
 let isServerListening = false;
 let bridge = new Bridge();
 const saveListen = Server.prototype.listen;
@@ -63,7 +64,7 @@ try {
   }
 }
 
-exports.launcher = bridge.launcher;`;
+exports.launcher = thundra(bridge.launcher);`;
 }
 exports.makeNowLauncher = makeNowLauncher;
 function makeAwsLauncher({ entrypointPath, awsLambdaHandler = '' }) {
